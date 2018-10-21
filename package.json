@@ -1,0 +1,25 @@
+{
+  "name": "weekend-to-do-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LexChudzik/weekend-to-do-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LexChudzik/weekend-to-do-app/issues"
+  },
+  "homepage": "https://github.com/LexChudzik/weekend-to-do-app#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pg": "^7.5.0"
+  }
+}
