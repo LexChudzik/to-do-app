@@ -57,7 +57,19 @@ function addTask(event) {
 
 //set task as complete
 function completeTask() {
-    displayTasks();
+    let taskId = $(this).parent().data('id');
+    console.log(taskId);
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/complete/${taskId}`
+      })
+      .then( function(response) {
+        console.log('task completed');
+        displayTasks();
+      })
+      .catch( function(error) {
+        console.log('Error on completeing task', error);
+      })
 }//end completeTask
 
 function deleteTask() {

@@ -57,6 +57,21 @@ app.delete('/tasks/:id', (req, res) => {
         })
 })//end app.delete
 
+//set task as complete
+app.put('/tasks/complete/:id', (req, res) => {
+    let reqId = req.params.id;
+    let sqlText = `UPDATE tasks SET completed=TRUE WHERE id=$1`;
+    pool.query(sqlText, [reqId])
+        .then((result)=>{
+            console.log('task set complete');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`Error making database query ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})//end app.put
+
 const port = process.env.PORT || 5000;
 app.listen( port, () => {
   console.log('up and running on port ', port);
