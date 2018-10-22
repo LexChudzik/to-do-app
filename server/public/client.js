@@ -21,10 +21,10 @@ function displayTasks() {
 }).then(function(response){
     console.log(response);
     for (const task of response) {
-        let newDiv = $(`<div class="${task.completed}">
-            <p>${task.name}</p>
-            <button class="completeBtn">Complete</button>
-            <button class="deleteBtn">Delete</button>
+        let newDiv = $(`<div class="${task.completed} container card">
+            <p class="card-body">${task.name}</p>
+            <button class="completeBtn btn btn-success">Complete</button>
+            <button class="deleteBtn btn btn-danger">Delete</button>
         </div>`)
         $('#tasksDisplay').append(newDiv)
         newDiv.data('id', task.id);

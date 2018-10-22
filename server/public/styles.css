@@ -1,3 +1,28 @@
 .true {
-    background-color: lightgreen
+    background-color: lightgreen;
+}
+
+.false {
+    background-color: pink
+}
+
+.card{
+    width: 200px;
+    margin: 20px;
+    display: inline-flex;
+}
+
+.true .completeBtn{
+    visibility: hidden;
+}
+
+button {
+    width:100px;
+    margin: 5px;
+}
+
+
+h2, h3, form {
+    text-align: center;
+    margin: 50px
 }
