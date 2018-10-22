@@ -23,7 +23,25 @@ app.get('/tasks', (req, res)=>{
       console.log(`Error making database query ${sqlText}`, error);
       res.sendStatus(500);
     })
-});
+})//end app.get
+
+//add a task
+app.post('/tasks', (req, res)=>{
+    let newTask = req.body;
+    const sqlText = `INSERT INTO tasks (name) VALUES 
+  ($1);`;
+  pool.query(sqlText, [newTask.name])
+        .then((result) => {
+            console.log(`Added task to database`, newTask);
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log(`Error making database query ${sqlText}`, error);
+            res.sendStatus(500); //
+})
+})//end app.post
+
+
 
 const port = process.env.PORT || 5000;
 app.listen( port, () => {

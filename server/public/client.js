@@ -8,6 +8,8 @@ function readyNow() {
 
 function listeners() {
     $('#addBtn').on('click', addTask);
+    $('#tasksDisplay').on('click', '.completeBtn', completeTask);
+    $('#tasksDisplay').on('click', '.deleteBtn', deleteTask);
 }
 
 //display tasks on DOM
@@ -19,7 +21,7 @@ function displayTasks() {
 }).then(function(response){
     console.log(response);
     for (const task of response) {
-        let newDiv = $(`<div class="${task.comleted}">
+        let newDiv = $(`<div class="${task.completed}">
             <p>${task.name}</p>
             <button class="completeBtn">Complete</button>
             <button class="deleteBtn">Delete</button>
@@ -32,6 +34,32 @@ function displayTasks() {
 })
 }//end displayTasks
 
-function addTask(params) {
-    
-}
+//add task to db
+function addTask(event) {
+    event.preventDefault();
+    let newTask = $("#taskIn").val();
+    console.log(newTask);
+    $.ajax({
+        method: 'POST',
+        url: '/tasks',
+        data: {
+            name: newTask
+        }
+    }).then(function(response){
+        //refresh tasks
+        displayTasks();
+        // Clear input field
+        $('#taskIn').val('');
+    }).catch(function(error){
+        alert(`Error adding task`, error);
+})
+}//end addTask
+
+//set task as complete
+function completeTask() {
+    displayTasks();
+}//end completeTask
+
+function deleteTask() {
+    displayTasks(); 
+}//end deleteTask
