@@ -61,5 +61,17 @@ function completeTask() {
 }//end completeTask
 
 function deleteTask() {
-    displayTasks(); 
+    let taskId = $(this).parent().data('id');
+    console.log(taskId);
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${taskId}`
+      })
+      .then(function(response){
+        console.log('Deleted task');
+        displayTasks(); 
+      })
+      .catch( function(error) {
+        console.log('Error deleteing task:', error);
+    })
 }//end deleteTask

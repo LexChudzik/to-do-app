@@ -41,7 +41,21 @@ app.post('/tasks', (req, res)=>{
 })
 })//end app.post
 
-
+//delete tasks from database
+app.delete('/tasks/:id', (req, res) => {
+    let reqId = req.params.id;
+    console.log('Delete request for id', reqId);
+    let sqlText = 'DELETE FROM tasks WHERE id=$1;';
+    pool.query(sqlText, [reqId])
+        .then((result) => {
+            console.log('Task deleted');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`Error making database query ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})//end app.delete
 
 const port = process.env.PORT || 5000;
 app.listen( port, () => {
